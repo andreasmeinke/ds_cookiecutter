@@ -32,6 +32,50 @@ $ conda install cookiecutter
 The directory structure of your new project looks like this: 
 
 ```
+
+├── app
+│   ├── __init__.py
+│   ├── main.py
+│   ├── settings.py
+│   ├── models
+│   │   ├── __init__.py
+│   │   └── models.py
+│   ├── routers
+│   │   ├── __init__.py
+│   │   └── ds_api
+│   │       ├── __init__.py
+│   │       └── ds_api.py
+│   ├── tasks
+│   │   ├── __init__.py
+│   │   └── load_models
+│   │       ├── __init__.py
+│   │       └── load_models.py
+├── code
+│   ├── archive
+│   ├── dev/prototype
+│   ├── main
+├── data
+│   ├── archive
+│   ├── interim
+│   ├── processed
+│   │   ├── exploration
+│   │   └── training
+│   ├── raw
+│   │   ├── application
+│   │   └── source
+│   ├── reports
+│   │   ├── analysis
+│   │   └── figures
+│   ├── src
+│   │   ├── data
+│   │   ├── features
+│   │   ├── models
+│   │   └── visualization
+│   ├── test
+│   │   └── __init__.py
+
+
+
 ├── LICENSE
 ├── Makefile           <- Makefile with commands like `make data` or `make train`
 ├── README.md          <- The top-level README for developers using this project.
