@@ -14,4 +14,4 @@ router = APIRouter()
 def classify_input(user_request: UserRequestIn):
     text = user_request.text
 
-    return {"user_text_in": dict["hello" : text]}
+    return {"user_text_in": {"hello" : text}}
