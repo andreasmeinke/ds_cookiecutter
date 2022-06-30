@@ -16,4 +16,4 @@ class EntityOut(BaseModel):
 
 class EntitiesOut(BaseModel):
 
-    user_text_in: Dict[str]
+    user_text_in: Dict[str, str]
