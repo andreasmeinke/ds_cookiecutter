@@ -32,94 +32,60 @@ $ conda install cookiecutter
 The directory structure of your new project looks like this: 
 
 ```
-
-├── app
+├── README.md           <- The top-level README for developers using this project.
+├── requirements.txt    <- The basic requirements from which the environment can be built.
+├── docker-compose.yaml
+├── Dockerfile          <- Central Dockerfile for the Data Science Project. Ready for
+│                          Deployment from the beginning.
+│
+├── app                 <- App Folder which defines the Application.
 │   ├── __init__.py
-│   ├── main.py
-│   ├── settings.py
-│   ├── models
+│   ├── main.py         <- Main Function for the Microservice Application.
+│   ├── settings.py     <- Setting File for the Mircroservice which shows Input and Output 
+│   │                      for the application interface.
+│   ├── models          <- Defines Input and Output Parameters.
 │   │   ├── __init__.py
 │   │   └── models.py
-│   ├── routers
+│   ├── routers         <- 
 │   │   ├── __init__.py
 │   │   └── ds_api
 │   │       ├── __init__.py
 │   │       └── ds_api.py
-│   ├── tasks
-│   │   ├── __init__.py
-│   │   └── load_models
-│   │       ├── __init__.py
-│   │       └── load_models.py
-├── code
-│   ├── archive
-│   ├── dev/prototype
-│   ├── main
-├── data
+│   └── tasks           <- Subtasks which are part of the applications.
+│       ├── __init__.py
+│       └── load_models <- Basic Task which loads a ML Model.
+│           ├── __init__.py
+│           └── load_models.py
+│
+├── code                <- Experiment Code from the Start of the Project.
+│   ├── archive         <- Outdated Code, which will not be part of the Project.
+│   ├── dev/prototype   <- Work in Progress Experiments.
+│   └── main            <- Experiments which are part of the result.
+│
+├── data                <- Storage for Data and Scripts to download or create data.
 │   ├── archive
 │   ├── interim
 │   ├── processed
 │   │   ├── exploration
 │   │   └── training
-│   ├── raw
-│   │   ├── application
-│   │   └── source
-│   ├── reports
-│   │   ├── analysis
-│   │   └── figures
-│   ├── src
-│   │   ├── data
-│   │   ├── features
-│   │   ├── models
-│   │   └── visualization
-│   ├── test
-│   │   └── __init__.py
-
-
-
-├── LICENSE
-├── Makefile           <- Makefile with commands like `make data` or `make train`
-├── README.md          <- The top-level README for developers using this project.
-├── data
-│   ├── external       <- Data from third party sources.
-│   ├── interim        <- Intermediate data that has been transformed.
-│   ├── processed      <- The final, canonical data sets for modeling.
-│   └── raw            <- The original, immutable data dump.
+│   └── raw             <- Raw Data either from Application or Source 
+│       ├── application <- Data that comes from the Application and can be used for 
+│       │                  Continuous Learning approaches.
+│       └── source      <- Source Data that comes from the Customer and is part of 
+│                          the project start.
 │
-├── docs               <- A default Sphinx project; see sphinx-doc.org for details
+├── reports             <- Data Visualization and Data Reports that are part of the Project.
+│   ├── analysis        <- Definite Analysis based on Project Data.
+│   └── figures         <- Diagrams based on the Project Data.
 │
-├── models             <- Trained and serialized models, model predictions, or model summaries
+├── src                 <- Source Code which will be part of the Microservice and Modularized.
+│   ├── data            <- Data that will be used in the Microservice.
+│   ├── features        <- Deployment ready code which are core of the Application.
+│   ├── models          <- ML Models which are used in the Application.
+│   └── visualization   <- Code that creates Visualizations. 
 │
-├── notebooks          <- Jupyter notebooks. Naming convention is a number (for ordering),
-│                         the creator's initials, and a short `-` delimited description, e.g.
-│                         `1.0-jqp-initial-data-exploration`.
-│
-├── references         <- Data dictionaries, manuals, and all other explanatory materials.
-│
-├── reports            <- Generated analysis as HTML, PDF, LaTeX, etc.
-│   └── figures        <- Generated graphics and figures to be used in reporting
-│
-├── requirements.txt   <- The requirements file for reproducing the analysis environment, e.g.
-│                         generated with `pip freeze > requirements.txt`
-│
-├── setup.py           <- makes project pip installable (pip install -e .) so src can be imported
-├── src                <- Source code for use in this project.
-│   ├── __init__.py    <- Makes src a Python module
-│   │
-│   ├── data           <- Scripts to download or generate data
-│   │   └── make_dataset.py
-│   │
-│   ├── features       <- Scripts to turn raw data into features for modeling
-│   │   └── build_features.py
-│   │
-│   ├── models         <- Scripts to train models and then use trained models to make
-│   │   │                 predictions
-│   │   ├── predict_model.py
-│   │   └── train_model.py
-│   │
-│   └── visualization  <- Scripts to create exploratory and results oriented visualizations
-│       └── visualize.py
-│
-└── tox.ini            <- tox file with settings for running tox; see tox.readthedocs.io
+└── test                <- Module Tests which starts with Mock Input Data.
+    └── __init__.py
 ```
 
 ### Create new Python Environment
