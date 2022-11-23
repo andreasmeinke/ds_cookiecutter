@@ -1,10 +1,12 @@
 # ds-fastapi-template
-Template for DS Projects using FastAPI.  
+Add top level description to your project.  
+
+# Working in this Repo 
 
 ## Install dependencies
 
-`$ pip install -r requirements.txt`
-
+`$ pip install -r requirements.txt`  
+`$ pip install -r requirements_dev.txt`
 ## Running in Docker container
 
 `$ docker-compose up`
@@ -15,9 +17,7 @@ See `http://localhost:8000/docs`
 
 ## Interacting with the API-Endpoints
 
-Send a GET-Request to http://localhost:8000/entities via tooling of your choice (e.g. Postman)  
-The body of the request has to be a JSON with a key "text" with a String value.  
-You can also specify model size and model language via corresponding key's and value's.
+Specify the main routers that should be used, highlight other routers that may be helpful. (e.g. health router)  
 
 ## Adding the API Template to your local project
 

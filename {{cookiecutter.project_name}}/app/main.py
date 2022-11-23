@@ -15,13 +15,14 @@ app = FastAPI(
     dependencies=[],
     title="{{cookiecutter.project_name}}",
     description="""
-    Template Project showcasing the creation of an FastAPI Endpoint using ML models.
+    This is the description of the microservice, please add a baseline explanation of 
+    the general purpose of the microservice for top-level understanding. 
     """,
     version=settings.api_version,
     terms_of_service="#",
     contact={
         "company": "the peak lab. GmbH & Co. KG",
-        "url": "https://thepeaklab.com",
+        "url": "https://thepeaklab.ai",
         "email": "{{cookiecutter.email}}",
     },
 )
