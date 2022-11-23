@@ -1,0 +1,42 @@
+name: bandit-check-on-pr
+
+on:
+  pull_request:
+    types: [opened]
+
+jobs:
+  bandit-security-check:
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/setup-python@v2
+      - uses: actions/checkout@v3
+        with:
+          python-version: '3.9'
+
+      - name: bandit_on_pr
+        env:
+          REPO_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
+        run: |
+          pip3 install bandit
+          bandit . -r --exit-zero -o bandit_report.txt -f txt
+      - name: upload-bandit-report
+        uses: actions/upload-artifact@v2
+        with:
+          path: ${{ RUNNER.temp }}/_github_home/bandit_report.txt
+
+      - id: get-comment-body
+        run: |
+          body="$(cat bandit_report.txt)"
+          body="${body//'%'/'%25'}"
+          body="${body//$'\n'/'%0A'}"
+          body="${body//$'\r'/'%0D'}"
+          echo "::set-output name=body::$body"
+
+      - name: Create comment
+        uses: peter-evans/create-or-update-comment@v2
+        with:
+          issue-number: ${{github.event.number}}
+          body: ${{ steps.get-comment-body.outputs.body }}
+          reactions: eyes
