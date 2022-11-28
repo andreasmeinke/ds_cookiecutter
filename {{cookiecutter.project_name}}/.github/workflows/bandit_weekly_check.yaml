@@ -1,0 +1,43 @@
+name: weekly-bandit-check
+
+on:
+  schedule:
+    - cron: "40 10 * * 2"
+
+jobs:
+  bandit-security-check:
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/setup-python@v2
+      - uses: actions/checkout@v3
+        with:
+          python-version: '3.9'
+
+      - name: bandit
+        env:
+          REPO_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
+        run: |
+          pip3 install bandit
+          bandit . -r --exit-zero -o bandit_report.txt -f txt
+      - name: upload-bandit-report
+        uses: actions/upload-artifact@v2
+        with:
+          path: ${{ RUNNER.temp }}/_github_home/bandit_report.txt
+
+      - id: get-comment-body
+        run: |
+          body="$(cat bandit_report.txt)"
+          body="${body//'%'/'%25'}"
+          body="${body//$'\n'/'%0A'}"
+          body="${body//$'\r'/'%0D'}"
+          echo "::set-output name=body::$body"
+
+      - name: post-to-slack
+        uses: rtCamp/action-slack-notify@v2
+        env:
+          SLACK_WEBHOOK: ${{ secrets.SLACK_WEBHOOK }}
+          SLACK_USERNAME: bandit-reporter
+          SLACK_MESSAGE: ${{ steps.get-comment-body.outputs.body }}
+          SLACK_TITLE: ${{github.repository}}
